@@ -1,2 +1,14 @@
-# Espouse App
-A blockchain-based expense tracker and fertility monitoring app.
+## Espouse App
+A solution to IVF Patients, Doctors, Gyanecologists and Embryologists. 
+
+## Features
+- Secure Data Tracking
+- Real Time Updates 
+- All your reports in one place
+- chatBot to answer your queries
+- Doctor - Patient Transparency
+- AI based analysis
+
+## Download APK
+[Click here to Download](http://github.com/TROCK3338/Espouse/releases/latest)
+
