@@ -35,3 +35,6 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 assets/espouse-b7ef8-b9d8368bc4f1.json
+node_modules/
+.env
+assets/*.json # Ignore sensitive JSON files
