@@ -19,7 +19,11 @@ export type RootStackParamList = {
   Welcome: undefined;
   Login: undefined;
   MainTabs: undefined;
-  BlogDetail: { blog: { id: string; title: string; subtitle: string; image: any } }; // ✅ Fix
+  // BlogDetail: { blog: { id: string; title: string; subtitle: string; image: any } }; // ✅ Fix
+  // BlogDetail: { blogId: number };  // ✅ Add this line
+  BlogDetail: { blog: { id: string; title: string; subtitle: string; image: any } }; // ✅ Ensure subtitle is here
+
+
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
