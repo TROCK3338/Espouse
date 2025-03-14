@@ -1,104 +1,96 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Animated, Dimensions } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 
 const { width } = Dimensions.get('window');
 
-const tabs = [
-  { name: 'HOME', icon: 'home-outline' },
-  { name: 'CHAT', icon: 'chatbubbles-outline' },
-  { name: 'TREAT', icon: 'heart-circle-outline' }, // Changed to ios-medical as an alternative
-  { name: 'PROFILE', icon: 'person-outline' },
-];
+// Define proper types for the props to match your original component
+interface NavigationBarProps {
+  onTabPress: (tab: string) => void;
+}
 
-const NavigationBar = ({ onTabPress }: { onTabPress: (tab: string) => void }) => {
-  const [activeTab, setActiveTab] = useState('HOME');
-  const animations = tabs.map(() => new Animated.Value(0));
+// Define tab type for better type safety
+interface TabItem {
+  name: string;
+  icon: keyof typeof Ionicons.glyphMap;
+  activeIcon: keyof typeof Ionicons.glyphMap;
+}
 
-  const handlePress = (tabName: string, index: number) => {
+const NavigationBar: React.FC<NavigationBarProps> = ({ onTabPress }) => {
+  // Using the same tab names as in your original code
+  const [activeTab, setActiveTab] = useState<string>('HOME');
+  
+  // Maintain your original tab names but update the styling
+  const tabs: TabItem[] = [
+    { name: 'HOME', icon: 'home-outline', activeIcon: 'home' },
+    { name: 'CHAT', icon: 'grid-outline', activeIcon: 'grid' },
+    { name: 'TREAT', icon: 'heart-circle-outline', activeIcon: 'heart-circle' },
+    { name: 'PROFILE', icon: 'person-outline', activeIcon: 'person' }
+  ];
+
+  const handlePress = (tabName: string) => {
     setActiveTab(tabName);
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-
-    Animated.parallel(
-      animations.map((anim, i) =>
-        Animated.timing(anim, {
-          toValue: i === index ? 1 : 0,
-          duration: 300,
-          useNativeDriver: false,
-        })
-      )
-    ).start();
-
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    // Call the onTabPress with the tab name string to match your original implementation
     onTabPress(tabName);
   };
 
   return (
-    <View style={styles.navWrapper}>
+    <View style={styles.container}>
       <View style={styles.navBar}>
-        {tabs.map((tab, index) => {
-          const isActive = activeTab === tab.name;
-
-          return (
-            <TouchableOpacity
-              key={tab.name}
-              onPress={() => handlePress(tab.name, index)}
-              activeOpacity={0.7}
-              style={isActive ? styles.activeTab : styles.inactiveTab}
-            >
-              <Ionicons
-                name={tab.icon as any}
-                size={28}
-                color={isActive ? '#FFFFFF' : '#6A4C93'}
-              />
-              {isActive && <Text style={styles.activeLabel}>{tab.name}</Text>}
-            </TouchableOpacity>
-          );
-        })}
+        {tabs.map((tab) => (
+          <TouchableOpacity
+            key={tab.name}
+            style={[
+              styles.tabButton,
+              activeTab === tab.name && styles.activeTabButton
+            ]}
+            onPress={() => handlePress(tab.name)}
+            activeOpacity={0.7}
+          >
+            <Ionicons
+              name={activeTab === tab.name ? tab.activeIcon : tab.icon}
+              size={24}
+              color={activeTab === tab.name ? "#000000" : "#FFFFFF"}
+            />
+          </TouchableOpacity>
+        ))}
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  navWrapper: {
+  container: {
     position: 'absolute',
-    bottom: 20,
-    width: width * 0.9,
+    bottom: 30,
     alignSelf: 'center',
-    borderRadius: 40,
-    backgroundColor: '#fff',
-    paddingVertical: 12,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 5,
+    width: width * 0.85,
   },
   navBar: {
     flexDirection: 'row',
-    width: '100%',
+    backgroundColor: '#121212',
+    borderRadius: 50,
+    paddingVertical: 14,
+    paddingHorizontal: 10,
     justifyContent: 'space-around',
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 5,
   },
-  activeTab: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'rgba(128, 135, 228, 0.9)',
-    borderRadius: 20,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-  },
-  inactiveTab: {
-    alignItems: 'center',
+  tabButton: {
+    width: 40,
+    height: 40,
     justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 50,
   },
-  activeLabel: {
-    color: '#FFFFFF',
-    marginLeft: 8,
-    fontWeight: '600',
+  activeTabButton: {
+    backgroundColor: '#FFFFFF',
   },
 });
 
