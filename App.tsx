@@ -7,7 +7,7 @@ import HomeScreen from './screens/HomeScreen';
 import ChatScreen from './screens/ChatScreen';
 import TreatmentScreen from './screens/TreatmentScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import BlogDetailScreen from './screens/BlogDetailScreen';
+// import BlogDetailScreen from './screens/BlogDetailScreen';
 import BlogsCarousel from './screens/BlogsCarousel';
 import NavigationBar from './screens/NavigationBar';
 
@@ -34,7 +34,7 @@ const App = () => (
       <Stack.Screen name="Welcome" component={WelcomeScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="MainTabs" component={MainTabs} />
-      <Stack.Screen name="BlogDetail" component={BlogDetailScreen} options={{ title: 'Blog Detail' }} />
+      {/* <Stack.Screen name="BlogDetail" component={BlogDetailScreen} options={{ title: 'Blog Detail' }} /> */}
     </Stack.Navigator>
   </NavigationContainer>
 );

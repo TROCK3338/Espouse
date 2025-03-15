@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, FlatList, KeyboardAvoidingView, Platform, SafeAreaView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-
+import { 
+  View, Text, StyleSheet, TextInput, TouchableOpacity, 
+  FlatList, KeyboardAvoidingView, Platform, SafeAreaView 
+} from 'react-native';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 interface Message {
   id: string;
   text: string;
@@ -11,91 +14,129 @@ interface Message {
 
 const ChatScreen = () => {
   const [inputMessage, setInputMessage] = useState('');
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '1',
-      text: 'Hello! How can I help with your IVF journey today?',
-      sender: 'assistant',
-      timestamp: new Date(),
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [chatActive, setChatActive] = useState(false);
 
-  const sendMessage = () => {
-    if (inputMessage.trim() === '') return;
+  const faqs = [
+    { id: '1', text: '🍼 What are the IVF success rates?' },
+    { id: '2', text: '💊 How do I manage IVF medications?' },
+    { id: '3', text: '🗓️ What is the IVF timeline?' },
+    { id: '4', text: '🥗 What diet helps during IVF?' },
+    { id: '5', text: '❤️ How to stay stress-free?' }
+  ];
 
-    // Add user message
+  const sendMessage = (messageText: string) => {
+    if (!messageText.trim()) return;
+
     const userMessage: Message = {
       id: Date.now().toString(),
-      text: inputMessage,
+      text: messageText,
       sender: 'user',
       timestamp: new Date(),
     };
 
-    setMessages([...messages, userMessage]);
+    setMessages(prev => [...prev, userMessage]);
     setInputMessage('');
 
-    // Simulate assistant response
+    // Simulated assistant response
     setTimeout(() => {
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: "I understand this process can be challenging. I'm here to support you every step of the way. Do you have any specific questions about your treatment?",
+        text: "I'm here to help! Let me provide some insights.",
         sender: 'assistant',
         timestamp: new Date(),
       };
-      setMessages(prevMessages => [...prevMessages, assistantMessage]);
+      setMessages(prev => [...prev, assistantMessage]);
     }, 1000);
-  };
-
-  const renderMessage = ({ item }: { item: Message }) => {
-    const isUser = item.sender === 'user';
-    return (
-      <View style={[
-        styles.messageBubble,
-        isUser ? styles.userMessage : styles.assistantMessage
-      ]}>
-        <Text style={styles.messageText}>{item.text}</Text>
-        <Text style={styles.timestamp}>
-          {item.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-        </Text>
-      </View>
-    );
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Support Chat</Text>
-        <Text style={styles.headerSubtitle}>We're here to help</Text>
-      </View>
+      {/* Gradient Background */}
+      <LinearGradient colors={['#E3F2FD', '#FCE4EC']} style={styles.gradient}>
+        
+        {/* Centered Logo + Title */}
+        {!chatActive && (
+          <View style={styles.header}>
+            <MaterialCommunityIcons name="feather" size={50} color="#FF4081" />
+            <Text style={styles.headerTitle}>IVF Support Chat</Text>
+          </View>
+        )}
 
-      <FlatList
-        data={messages}
-        renderItem={renderMessage}
-        keyExtractor={item => item.id}
-        contentContainerStyle={styles.messageList}
-        inverted={false}
-      />
+        {/* FAQs Section */}
+        {!chatActive && (
+          <View style={styles.faqContainer}>
+            <Text style={styles.faqTitle}>Frequently Asked Questions</Text>
+            {faqs.map((faq) => (
+              <TouchableOpacity 
+                key={faq.id} 
+                style={styles.faqButton} 
+                onPress={() => {
+                  setChatActive(true);
+                  sendMessage(faq.text);
+                }}
+              >
+                <Text style={styles.faqText}>{faq.text}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        )}
 
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.inputContainer}
-      >
-        <TextInput
-          style={styles.input}
-          value={inputMessage}
-          onChangeText={setInputMessage}
-          placeholder="Type your message..."
-          placeholderTextColor="#999"
-          multiline
-        />
-        <TouchableOpacity 
-          style={styles.sendButton}
-          onPress={sendMessage}
-          disabled={inputMessage.trim() === ''}
-        >
-          <Ionicons name="send" size={24} color={inputMessage.trim() === '' ? '#CCC' : '#8087E4'} />
-        </TouchableOpacity>
-      </KeyboardAvoidingView>
+        {/* Search Button to Enter Chat */}
+        {!chatActive && (
+          <TouchableOpacity 
+            style={styles.searchButton} 
+            onPress={() => setChatActive(true)}
+          >
+            <Text style={styles.searchText}>SEARCH 🔍</Text>
+          </TouchableOpacity>
+        )}
+
+        {/* Chat Window */}
+        {chatActive && (
+          <>
+            <FlatList
+              data={messages}
+              renderItem={({ item }) => (
+                <View style={[
+                  styles.messageBubble, 
+                  item.sender === 'user' ? styles.userMessage : styles.assistantMessage
+                ]}>
+                  <Text style={styles.messageText}>{item.text}</Text>
+                  <Text style={styles.timestamp}>
+                    {item.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </Text>
+                </View>
+              )}
+              keyExtractor={item => item.id}
+              contentContainerStyle={styles.messageList}
+              inverted
+            />
+
+            {/* Chat Input */}
+            <KeyboardAvoidingView
+              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+              style={styles.inputContainer}
+            >
+              <TextInput
+                style={styles.input}
+                value={inputMessage}
+                onChangeText={setInputMessage}
+                placeholder="Type your message..."
+                placeholderTextColor="#999"
+                multiline
+              />
+              <TouchableOpacity 
+                style={styles.sendButton}
+                onPress={() => sendMessage(inputMessage)}
+                disabled={!inputMessage.trim()}
+              >
+                <Ionicons name="send" size={24} color={!inputMessage.trim() ? '#CCC' : '#FF4081'} />
+              </TouchableOpacity>
+            </KeyboardAvoidingView>
+          </>
+        )}
+      </LinearGradient>
     </SafeAreaView>
   );
 };
@@ -103,41 +144,77 @@ const ChatScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9F9F9',
+  },
+  gradient: {
+    flex: 1,
+    alignItems: 'center',
+    paddingTop: 50,
   },
   header: {
-    padding: 20,
-    backgroundColor: '#8087E4',
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    alignItems: 'center',
+    marginBottom: 20,
   },
   headerTitle: {
-    fontSize: 22,
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+    marginTop: 10,
+  },
+  faqContainer: {
+    width: '90%',
+    padding: 15,
+  },
+  faqTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#555',
+    marginBottom: 10,
+  },
+  faqButton: {
+    backgroundColor: '#FFF',
+    padding: 12,
+    borderRadius: 20,
+    marginBottom: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  faqText: {
+    fontSize: 16,
+    color: '#333',
+  },
+  searchButton: {
+    backgroundColor: '#FF4081',
+    padding: 14,
+    borderRadius: 24,
+    marginTop: 20,
+    width: '60%',
+    alignItems: 'center',
+  },
+  searchText: {
+    fontSize: 16,
     fontWeight: 'bold',
     color: '#FFF',
-  },
-  headerSubtitle: {
-    fontSize: 14,
-    color: 'rgba(255,255,255,0.8)',
-    marginTop: 4,
   },
   messageList: {
     padding: 16,
     paddingBottom: 100,
   },
   messageBubble: {
-    maxWidth: '80%',
+    maxWidth: '75%',
     padding: 12,
     borderRadius: 18,
     marginVertical: 8,
   },
   userMessage: {
-    backgroundColor: '#8087E4',
+    backgroundColor: '#FF4081',
     alignSelf: 'flex-end',
     borderTopRightRadius: 4,
   },
   assistantMessage: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#FFF',
     alignSelf: 'flex-start',
     borderTopLeftRadius: 4,
     shadowColor: '#000',
@@ -160,7 +237,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     position: 'absolute',
-    bottom: 85,
+    bottom: 20,
     left: 20,
     right: 20,
     backgroundColor: '#FFF',

@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
   },
   healthCard: {
     borderRadius: 16,
-    padding: 12,
+    padding: 6,
     marginHorizontal: 5,
     marginBottom: 10,
     minWidth: 100,

@@ -16,18 +16,9 @@ export type StackParamList = {
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<StackParamList, 'Home'>;
 
-const blogs = [
-  { id: '1', image: require('../assets/blog1.png'), title: "Blog Title 1", subtitle: "This is a short blog description"},
-  { id: '2', image: require('../assets/blog2.png'), title: "Blog Title 2", subtitle: "Another description here"},
-  { id: '3', image: require('../assets/blog3.png'), title: "Blog Title 3", subtitle: "Third blog description"},
-  { id: '4', image: require('../assets/blog4.png'), title: "Blog Title 4", subtitle: "Fourth blog description"},
-  { id: '5', image: require('../assets/blog5.png'), title: "Blog Title 5", subtitle: "Fifth blog description"},
-  { id: '6', image: require('../assets/blog6.png'), title: "Blog Title 6", subtitle: "Sixth blog description"},
-];
-
 // Activities data
 const activities = [
-  { id: '1', name: 'Yoga Group', date: '25 Nov.', time: '14:00-15:00', room: 'A5 room', difficulty: 'Medium', trainer: 'Tiffany Way', trainerImage: require('../assets/profile.png'), backgroundColor: '#FFD38C' },
+  { id: '1', name: 'Yoga Group', date: '25 Nov.', time: '14:00-15:00', room: 'A5 room', difficulty: 'Medium', trainer: 'Tiffany Way', backgroundColor: '#FFD38C' },
   { id: '2', name: 'Balance', date: '28 Nov.', time: '18:00-19:30', room: 'A2 room', difficulty: 'Light', backgroundColor: '#B7DBFF' },
 ];
 
@@ -73,7 +64,7 @@ const HomeScreen = () => {
         {/* Header Section */}
         <View style={styles.header}>
           <View style={styles.profileSection}>
-            <Image source={profilePicUri ? { uri: profilePicUri } : require('../assets/profile.png')} style={styles.profilePic} />
+            <Image source={profilePicUri ? { uri: profilePicUri } : require('../assets/girl.jpg')} style={styles.profilePic} />
             <View style={styles.headerTextContainer}>
               <Text style={styles.greeting}>Hello, Sandra</Text>
               <Text style={styles.date}>Today 25 Nov.</Text>
@@ -88,12 +79,12 @@ const HomeScreen = () => {
         <View style={styles.challengeCard}>
           <View style={styles.challengeTextContainer}>
             <Text style={styles.challengeTitle}>Daily challenge</Text>
-            <Text style={styles.challengeDescription}>Do your plan before 09:00 AM</Text>
+            <Text style={styles.challengeDescription}>Your Personal Questionnaire</Text>
             
             <View style={styles.participantsContainer}>
-              <Image source={require('../assets/profile.png')} style={styles.participantAvatar} />
-              <Image source={require('../assets/profile.png')} style={[styles.participantAvatar, styles.participantOverlap]} />
-              <Image source={require('../assets/profile.png')} style={[styles.participantAvatar, styles.participantOverlap2]} />
+              <Image source={require('../assets/avatar.jpeg')} style={styles.participantAvatar} />
+              <Image source={require('/Users/amansinghal/Documents/DEVELOPER/23-02-25/Espouse - IVF/assets/avatar2.jpg')} style={[styles.participantAvatar, styles.participantOverlap]} />
+              <Image source={require('/Users/amansinghal/Documents/DEVELOPER/23-02-25/Espouse - IVF/assets/avatar3.jpg')} style={[styles.participantAvatar, styles.participantOverlap2]} />
               <View style={styles.moreParticipants}>
                 <Text style={styles.moreParticipantsText}>+4</Text>
               </View>
@@ -102,11 +93,20 @@ const HomeScreen = () => {
           
           {/* This would be your 3D model or image */}
           <View style={styles.challengeImageContainer}>
-            {/* Replace this with your actual image or 3D rendering */}
-            <View style={styles.placeholderShapes}>
-              <View style={[styles.shapeCircle, { backgroundColor: '#FFA500' }]} />
-              <View style={[styles.shapeCircle, { backgroundColor: '#808080' }]} />
-              <View style={[styles.shapeCircle, { backgroundColor: '#FFFF00' }]} />
+{/* 3D model - Apple like */}
+            {/* <View style={styles.placeholderShapes}>
+              <View style={[styles.shapeCircle, { backgroundColor: 'yellow', height : 110, width : 110,  borderRadius : 50}]} />
+              <View style={[styles.shapeCircle, { backgroundColor: 'red', width : 92, height: 92, borderRadius : 50}]} />
+              <View style={[styles.shapeCircle, { backgroundColor: 'green', width : 72, height : 72, borderRadius : 50}]} />
+            </View> */}
+{/* Image */}
+            <View style={styles.container}>
+            <Image source={require('../assets/DailyChallenge.jpg')} style={{
+                  height: 100,
+                  width: 100,
+                  borderRadius: 20,
+                  marginTop: -50,
+            }} />
             </View>
           </View>
         </View>
@@ -125,7 +125,7 @@ const HomeScreen = () => {
         </View>
 
         {/* Your Plan Section */}
-        <Text style={styles.sectionTitle}>Your plan</Text>
+        <Text style={styles.sectionTitle}>Your Insights</Text>
         
         <View style={styles.planContainer}>
           {/* Activity Cards */}
@@ -134,29 +134,29 @@ const HomeScreen = () => {
               <View style={styles.activityHeader}>
                 <Text style={styles.activityDifficulty}>{activity.difficulty}</Text>
               </View>
-              <Text style={styles.activityName}>{activity.name}</Text>
+              {/* <Text style={styles.activityName}>{activity.name}</Text>
               <Text style={styles.activityDate}>{activity.date}</Text>
               <Text style={styles.activityTime}>{activity.time}</Text>
-              <Text style={styles.activityRoom}>{activity.room}</Text>
+              <Text style={styles.activityRoom}>{activity.room}</Text> */}
               
               {activity.trainer && (
                 <View style={styles.trainerContainer}>
-                  <Text style={styles.trainerLabel}>Trainer</Text>
-                  <View style={styles.trainerInfo}>
+                  {/* <Text style={styles.trainerLabel}>Trainer</Text> */}
+                  {/* <View style={styles.trainerInfo}>
                     <Image source={activity.trainerImage} style={styles.trainerImage} />
                     <Text style={styles.trainerName}>{activity.trainer}</Text>
-                  </View>
+                  </View> */}
                 </View>
               )}
             </View>
           ))}
           
-          {/* Social Media Links */}
+          Social Media Links
           <View style={styles.socialCard}>
             <View style={styles.socialIconsContainer}>
               {socialIcons.map((item) => (
                 <View key={item.id} style={styles.socialIconCircle}>
-                  <Ionicons name={item.icon} size={24} color="#888" />
+                  <Ionicons name= "search" size={24} color="#888" />
                 </View>
               ))}
             </View>
@@ -252,7 +252,6 @@ const styles = StyleSheet.create({
   },
   profileSection: {
     flexDirection: 'row',
-    alignItems: 'center',
   },
   profilePic: {
     width: 45,
@@ -354,8 +353,10 @@ const styles = StyleSheet.create({
   },
   dayItem: {
     width: 40,
-    height: 60,
+    height: 70,
     borderRadius: 20,
+    borderColor : '#000',
+    borderWidth : 0.5,
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
@@ -447,7 +448,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   socialCard: {
-    width: '48%',
+    width: '100%',
     aspectRatio: 1,
     backgroundColor: 'rgba(255, 98, 247, 0.68)',
     borderRadius: 20,

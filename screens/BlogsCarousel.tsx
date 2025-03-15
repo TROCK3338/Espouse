@@ -8,8 +8,8 @@ import { RootStackParamList } from '../App'; // Ensure correct import path
 type NavigationProp = StackNavigationProp<RootStackParamList, 'BlogDetail'>;
 
 const blogs = [
-  { id: '1', title: 'IVF Success Tips', subtitle: 'Improve your chances of success', image: require('../assets/blog1.jpg') },
-  { id: '2', title: 'Latest in Fertility', subtitle: 'New advancements in IVF', image: require('../assets/blog2.jpg') },
+  { id: '1', title: 'IVF Success Tips', subtitle: 'Improve your chances of success', image: require('../assets/blog1.png') },
+  { id: '2', title: 'Latest in Fertility', subtitle: 'New advancements in IVF', image: require('../assets/blog2.png') },
 ];
 
 const BlogsCarousel = () => {

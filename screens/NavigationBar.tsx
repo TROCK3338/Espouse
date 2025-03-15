@@ -1,38 +1,29 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 
 const { width } = Dimensions.get('window');
 
-// Define proper types for the props to match your original component
 interface NavigationBarProps {
   onTabPress: (tab: string) => void;
 }
 
-// Define tab type for better type safety
-interface TabItem {
-  name: string;
-  icon: keyof typeof Ionicons.glyphMap;
-  activeIcon: keyof typeof Ionicons.glyphMap;
-}
-
 const NavigationBar: React.FC<NavigationBarProps> = ({ onTabPress }) => {
-  // Using the same tab names as in your original code
   const [activeTab, setActiveTab] = useState<string>('HOME');
-  
-  // Maintain your original tab names but update the styling
-  const tabs: TabItem[] = [
-    { name: 'HOME', icon: 'home-outline', activeIcon: 'home' },
-    { name: 'CHAT', icon: 'grid-outline', activeIcon: 'grid' },
-    { name: 'TREAT', icon: 'heart-circle-outline', activeIcon: 'heart-circle' },
-    { name: 'PROFILE', icon: 'person-outline', activeIcon: 'person' }
+
+  // Using chat and stethoscope icons but keeping the original structure
+  const tabs = [
+    { name: 'HOME', iconType: 'Ionicons', icon: 'home-outline', activeIcon: 'home' },
+    { name: 'CHAT', iconType: 'Ionicons', icon: 'chatbubble-outline', activeIcon: 'chatbubble' },
+    { name: 'TREAT', iconType: 'FontAwesome5', icon: 'stethoscope', activeIcon: 'stethoscope' },
+    { name: 'PROFILE', iconType: 'Ionicons', icon: 'person-outline', activeIcon: 'person' }
   ];
 
   const handlePress = (tabName: string) => {
     setActiveTab(tabName);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    // Call the onTabPress with the tab name string to match your original implementation
     onTabPress(tabName);
   };
 
@@ -49,11 +40,19 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ onTabPress }) => {
             onPress={() => handlePress(tab.name)}
             activeOpacity={0.7}
           >
-            <Ionicons
-              name={activeTab === tab.name ? tab.activeIcon : tab.icon}
-              size={24}
-              color={activeTab === tab.name ? "#000000" : "#FFFFFF"}
-            />
+            {tab.iconType === 'FontAwesome5' ? (
+              <FontAwesome5
+                name={tab.icon}
+                size={20}
+                color={activeTab === tab.name ? "#000000" : "#FFFFFF"}
+              />
+            ) : (
+              <Ionicons
+                name={activeTab === tab.name ? tab.activeIcon : tab.icon}
+                size={24}
+                color={activeTab === tab.name ? "#000000" : "#FFFFFF"}
+              />
+            )}
           </TouchableOpacity>
         ))}
       </View>
@@ -66,14 +65,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 30,
     alignSelf: 'center',
-    width: width * 0.85,
+    width: width * 0.75,
   },
   navBar: {
     flexDirection: 'row',
     backgroundColor: '#121212',
-    borderRadius: 50,
-    paddingVertical: 14,
-    paddingHorizontal: 10,
+    borderRadius: 40,
+    paddingVertical: 15,
+    paddingHorizontal: 15,
     justifyContent: 'space-around',
     alignItems: 'center',
     shadowColor: '#000',
@@ -90,7 +89,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   activeTabButton: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'rgb(255, 255, 255)',
   },
 });
 
