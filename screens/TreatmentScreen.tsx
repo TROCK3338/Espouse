@@ -187,23 +187,23 @@ const TreatmentScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9F9F9',
+    backgroundColor: '#fff',
   },
   header: {
     padding: 20,
     paddingTop: 60,
-    backgroundColor: '#8087E4',
+    backgroundColor: 'rgba(230, 207, 242, 0.8)',
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
   },
   headerTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#FFF',
+    color: '#000',
   },
   headerSubtitle: {
     fontSize: 16,
-    color: 'rgba(255,255,255,0.8)',
+    color: 'rgba(0, 0, 0, 0.62)',
     marginTop: 5,
   },
   progressContainer: {
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
   },
   progressFill: {
     height: '100%',
-    backgroundColor: '#8087E4',
+    backgroundColor: 'rgba(219, 153, 255, 0.8)',
   },
   progressText: {
     textAlign: 'right',
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
-    backgroundColor: '#8087E4',
+    backgroundColor: 'rgba(198, 92, 255, 0.8)',
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 15,
@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
   sectionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFF',
+    backgroundColor: 'rgba(230, 207, 242, 0.8)',
     margin: 15,
     // marginBottom: expandedSection === 'medications' || expandedSection === 'steps' || expandedSection === 'symptoms' ? 0 : 15, // Update this line
     padding: 15,
@@ -275,7 +275,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   activeSectionHeader: {
-    backgroundColor: '#8087E4',
+    backgroundColor: 'rgba(204, 130, 245, 0.8)',
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
   },

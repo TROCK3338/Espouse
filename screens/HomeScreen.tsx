@@ -16,10 +16,11 @@ export type StackParamList = {
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<StackParamList, 'Home'>;
 
-// Activities data
-const activities = [
-  { id: '1', name: 'Yoga Group', date: '25 Nov.', time: '14:00-15:00', room: 'A5 room', difficulty: 'Medium', trainer: 'Tiffany Way', backgroundColor: '#FFD38C' },
-  { id: '2', name: 'Balance', date: '28 Nov.', time: '18:00-19:30', room: 'A2 room', difficulty: 'Light', backgroundColor: '#B7DBFF' },
+const blogs = [
+  { id: '1', title: 'Blog 1', subtitle: 'Subtitle 1', image: require('../assets/blog1.png') },
+  { id: '2', title: 'Blog 2', subtitle: 'Subtitle 2', image: require('../assets/blog2.png') },
+  { id: '3', title: 'Blog 3', subtitle: 'Subtitle 3', image: require('../assets/blog3.png') },
+  { id: '4', title: 'Blog 4', subtitle: 'Subtitle 4', image: require('../assets/blog4.png') },
 ];
 
 const weekDays = [
@@ -30,12 +31,6 @@ const weekDays = [
   { day: 'Thu', date: '26', isSelected: false },
   { day: 'Fri', date: '27', isSelected: false },
   { day: 'Sat', date: '28', isSelected: false },
-];
-
-const socialIcons = [
-  { id: '1', icon: 'logo-instagram' },
-  { id: '2', icon: 'logo-youtube' },
-  { id: '3', icon: 'logo-twitter' },
 ];
 
 const HomeScreen = () => {
@@ -83,8 +78,8 @@ const HomeScreen = () => {
             
             <View style={styles.participantsContainer}>
               <Image source={require('../assets/avatar.jpeg')} style={styles.participantAvatar} />
-              <Image source={require('/Users/amansinghal/Documents/DEVELOPER/23-02-25/Espouse - IVF/assets/avatar2.jpg')} style={[styles.participantAvatar, styles.participantOverlap]} />
-              <Image source={require('/Users/amansinghal/Documents/DEVELOPER/23-02-25/Espouse - IVF/assets/avatar3.jpg')} style={[styles.participantAvatar, styles.participantOverlap2]} />
+              <Image source={require('../assets/avatar2.jpg')} style={[styles.participantAvatar, styles.participantOverlap]} />
+              <Image source={require('../assets/avatar3.jpg')} style={[styles.participantAvatar, styles.participantOverlap2]} />
               <View style={styles.moreParticipants}>
                 <Text style={styles.moreParticipantsText}>+4</Text>
               </View>
@@ -93,21 +88,14 @@ const HomeScreen = () => {
           
           {/* This would be your 3D model or image */}
           <View style={styles.challengeImageContainer}>
-{/* 3D model - Apple like */}
-            {/* <View style={styles.placeholderShapes}>
-              <View style={[styles.shapeCircle, { backgroundColor: 'yellow', height : 110, width : 110,  borderRadius : 50}]} />
-              <View style={[styles.shapeCircle, { backgroundColor: 'red', width : 92, height: 92, borderRadius : 50}]} />
-              <View style={[styles.shapeCircle, { backgroundColor: 'green', width : 72, height : 72, borderRadius : 50}]} />
-            </View> */}
-{/* Image */}
-            <View style={styles.container}>
-            <Image source={require('../assets/DailyChallenge.jpg')} style={{
-                  height: 100,
-                  width: 100,
-                  borderRadius: 20,
-                  marginTop: -50,
-            }} />
-            </View>
+            <Image 
+              source={require('../assets/DailyChallenge.jpg')} 
+              style={{
+                height: 100,
+                width: 100,
+                borderRadius: 20,
+              }} 
+            />
           </View>
         </View>
 
@@ -124,44 +112,57 @@ const HomeScreen = () => {
           ))}
         </View>
 
-        {/* Your Plan Section */}
-        <Text style={styles.sectionTitle}>Your Insights</Text>
-        
-        <View style={styles.planContainer}>
-          {/* Activity Cards */}
-          {activities.map((activity) => (
-            <View key={activity.id} style={[styles.activityCard, { backgroundColor: activity.backgroundColor }]}>
-              <View style={styles.activityHeader}>
-                <Text style={styles.activityDifficulty}>{activity.difficulty}</Text>
-              </View>
-              {/* <Text style={styles.activityName}>{activity.name}</Text>
-              <Text style={styles.activityDate}>{activity.date}</Text>
-              <Text style={styles.activityTime}>{activity.time}</Text>
-              <Text style={styles.activityRoom}>{activity.room}</Text> */}
-              
-              {activity.trainer && (
-                <View style={styles.trainerContainer}>
-                  {/* <Text style={styles.trainerLabel}>Trainer</Text> */}
-                  {/* <View style={styles.trainerInfo}>
-                    <Image source={activity.trainerImage} style={styles.trainerImage} />
-                    <Text style={styles.trainerName}>{activity.trainer}</Text>
-                  </View> */}
-                </View>
-              )}
-            </View>
-          ))}
-          
-          Social Media Links
-          <View style={styles.socialCard}>
-            <View style={styles.socialIconsContainer}>
-              {socialIcons.map((item) => (
-                <View key={item.id} style={styles.socialIconCircle}>
-                  <Ionicons name= "search" size={24} color="#888" />
-                </View>
-              ))}
-            </View>
-          </View>
-        </View>
+        {/* Your Blogs Section */}
+        <Text style={styles.sectionTitle}>Latest Blogs</Text>
+        <View style={styles.blogGrid}>
+  {/* First Row (Already Done) */}
+  <View style={styles.largeBlog}>
+    <Image 
+      source={require('../assets/blog1.png')}  
+      style={styles.largeBlogImage} 
+    />
+  </View>
+
+  <View style={styles.smallBlogsContainer}>
+    <View style={[styles.smallBlog, styles.firstSmallBlog]}>
+      <Image 
+        source={require('../assets/blog2.png')}  
+        style={styles.smallBlogImage} 
+      />
+    </View>
+    <View style={styles.smallBlog}>
+      <Image 
+        source={require('../assets/blog3.png')}  
+        style={styles.smallBlogImage} 
+      />
+    </View>
+  </View>
+</View>
+
+{/* Second Row - Full Width Blog */}
+<View style={styles.fullWidthBlog}>
+  <Image 
+    source={require('../assets/blog4.png')}  
+    style={styles.fullWidthImage} 
+  />
+</View>
+
+{/* Third Row - Two Equal Half-Width Blogs */}
+<View style={styles.halfWidthBlogs}>
+  <View style={styles.halfBlog}>
+    <Image 
+      source={require('../assets/blog5.png')}  
+      style={styles.halfBlogImage} 
+    />
+  </View>
+  <View style={styles.halfBlog}>
+    <Image 
+      source={require('../assets/blog6.png')}  
+      style={styles.halfBlogImage} 
+    />
+  </View>
+</View>
+</View>
 
         {/* Search Modal */}
         {searchActive && (
@@ -181,59 +182,103 @@ const HomeScreen = () => {
             </View>
           </View>
         )}
-
-        {/* Modal Dialog (kept from your original code) */}
-        <Modal
-          transparent
-          visible={modalVisible}
-          animationType="fade"
-          onRequestClose={() => setModalVisible(false)}
-        >
-          <TouchableOpacity
-            style={styles.modalBackground}
-            activeOpacity={1}
-            onPress={() => setModalVisible(false)}
-          >
-            <View style={styles.modalContainer}>
-              {/* Dynamic Title */}
-              <Text style={styles.modalTitle}>
-                {modalContent === "learnMore" ? "Learn More" : modalContent === "reports" ? "Reports" : "Updates"}
-              </Text>
-
-              {/* Dynamic Image (Optional) */}
-              {modalContent === "learnMore" && <Image source={require("../assets/TOD.jpg")} style={styles.modalImage} />}
-              <ScrollView style={{ maxHeight: "70%" }} contentContainerStyle={{ padding: 5 }}>
-              {modalContent === "reports" && (
-              <Text style={styles.modalText}>We will link it to the backend to upload reports</Text>
-              )}
-              {modalContent === "updates" && (
-                <Text style={styles.modalText}>We will link it to the backend to track updates.
-              </Text>
-              )}
-              </ScrollView>
-
-              {/* Dynamic Description */}
-              <Text style={styles.modalText}>
-                {modalContent === "learnMore" 
-                  ? "This is additional information about the topic."
-                  : modalContent === "reports" 
-                  ? "Here are your reports details."
-                  : "Here are the latest updates for you!"}
-              </Text>
-
-              {/* Close Button */}
-              <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.closeButton}>
-                <Text style={styles.closeButtonText}>Close</Text>
-              </TouchableOpacity>
-            </View>
-          </TouchableOpacity>
-        </Modal>
-      </View>
-    </ScrollView>
+{/* </View> */}
+</ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  fullWidthBlog: {
+    width: '100%',
+    backgroundColor: 'rgb(242, 214, 237)',
+    borderRadius: 16,
+    marginTop: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowOffset: { width: 2, height: 4 },
+    shadowRadius: 6,
+    elevation: 13,
+  },
+  
+  fullWidthImage: {
+    width: '100%',
+    height: 260,
+    borderRadius: 12,
+    resizeMode: 'cover',
+  },
+  
+  halfWidthBlogs: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+  },
+  
+  halfBlog: {
+    flex: 1,
+    backgroundColor: 'rgb(242, 214, 237)',
+    borderRadius: 16,
+    marginHorizontal: 5, // Space between the two blogs
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowOffset: { width: 2, height: 4 },
+    shadowRadius: 6,
+    elevation: 13,
+  },
+  
+  halfBlogImage: {
+    width: '100%',
+    height: 200,
+    borderRadius: 12,
+    resizeMode: 'cover',
+  },
+  blogGrid: {
+    flexDirection: 'row',
+    gap: 10,
+    paddingHorizontal: 1,
+    marginTop: 2,
+  },
+  
+  largeBlog: {
+    flex: 1, 
+    borderRadius: 16,
+    overflow: 'hidden', // Keeps image inside rounded corners
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowOffset: { width: 2, height: 4 },
+    shadowRadius: 6,
+    elevation: 13,
+    height: 260,
+  },
+  
+  largeBlogImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',  // Ensures image fills space
+  },
+  
+  smallBlogsContainer: {
+    flex: 1, 
+    justifyContent: 'space-between',
+  },
+  firstSmallBlog: {
+    marginBottom: 10,  // Adjust this value as needed
+  },
+  smallBlog: {
+    borderRadius: 16,
+    overflow: 'hidden', // Keeps image inside rounded corners
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowOffset: { width: 2, height: 4 },
+    shadowRadius: 6,
+    elevation: 13,
+    height: 130, // Set height properly
+  },
+  
+  smallBlogImage: {
+    width: '100%',
+    height: '100%', // Makes sure it fully fills the container
+    resizeMode: 'cover',
+  },
   scrollContainer: { 
     flexGrow: 1, 
     backgroundColor: '#f8f8fa'
@@ -355,8 +400,8 @@ const styles = StyleSheet.create({
     width: 40,
     height: 70,
     borderRadius: 20,
-    borderColor : '#000',
-    borderWidth : 0.5,
+    borderColor: '#000',
+    borderWidth: 0.5,
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
@@ -376,7 +421,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   selectedDayText: {
-    color: '#aaa',
+    color: '#fff',
   },
   selectedDateText: {
     color: '#fff',
@@ -387,12 +432,13 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   planContainer: {
+    marginBottom: 20,
+  },
+  activityRow: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
   activityCard: {
-    width: '48%',
     borderRadius: 20,
     padding: 15,
     marginBottom: 15,
@@ -407,6 +453,12 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     borderRadius: 15,
     fontSize: 12,
+  },
+  activityImage: {
+    width: '100%',
+    height: 100,
+    borderRadius: 15,
+    marginBottom: 10,
   },
   activityName: {
     fontSize: 22,
@@ -448,26 +500,16 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   socialCard: {
-    width: '100%',
-    aspectRatio: 1,
     backgroundColor: 'rgba(255, 98, 247, 0.68)',
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 15,
+    padding: 15,
   },
-  socialIconsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+  socialImage: {
     width: '100%',
-  },
-  socialIconCircle: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: '100%',
+    borderRadius: 15,
   },
   searchOverlay: {
     position: 'absolute',
@@ -498,7 +540,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginRight: 10,
   },
-  // Keep these for your modal functionality
+  // Modal styles
   modalContainer: {
     width: "90%",
     backgroundColor: "white",
