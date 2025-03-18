@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import Fontisto from '@expo/vector-icons/Fontisto';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import * as Haptics from 'expo-haptics';
 
 const { width } = Dimensions.get('window');
@@ -15,8 +18,8 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ onTabPress }) => {
 
   // Using chat and stethoscope icons but keeping the original structure
   const tabs = [
-    { name: 'HOME', iconType: 'Ionicons', icon: 'home-outline', activeIcon: 'home' },
-    { name: 'CHAT', iconType: 'Ionicons', icon: 'chatbubble-outline', activeIcon: 'chatbubble' },
+    { name: 'HOME', iconType: 'MaterialCommunityIcons', icon: 'home-analytics', activeIcon: 'home-analytics' },
+    { name: 'CHAT', iconType: 'Fontisto', icon: 'hipchat', activeIcon: 'hipchat' },
     { name: 'TREAT', iconType: 'FontAwesome5', icon: 'stethoscope', activeIcon: 'stethoscope' },
     { name: 'PROFILE', iconType: 'Ionicons', icon: 'person-outline', activeIcon: 'person' }
   ];
@@ -40,19 +43,17 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ onTabPress }) => {
             onPress={() => handlePress(tab.name)}
             activeOpacity={0.7}
           >
-            {tab.iconType === 'FontAwesome5' ? (
-              <FontAwesome5
-                name={tab.icon}
-                size={20}
-                color={activeTab === tab.name ? "#000000" : "#FFFFFF"}
-              />
-            ) : (
-              <Ionicons
-                name={activeTab === tab.name ? tab.activeIcon : tab.icon}
-                size={24}
-                color={activeTab === tab.name ? "#000000" : "#FFFFFF"}
-              />
-            )}
+{tab.iconType === 'FontAwesome5' ? (
+  <FontAwesome5 name={tab.icon} size={28} color={activeTab === tab.name ? "#000000" : "#FFFFFF"} />
+) : tab.iconType === 'MaterialCommunityIcons' ? (
+  <MaterialCommunityIcons name={tab.icon as any} size={40} color={activeTab === tab.name ? "#000000" : "#FFFFFF"} />
+) : tab.iconType === 'Ionicons' ? (
+  <Ionicons name={tab.icon as any} size={32} color={activeTab === tab.name ? "#000000" : "#FFFFFF"} />
+) : tab.iconType === 'Fontisto' ? (
+  <Fontisto name={tab.icon as any} size={30} color={activeTab === tab.name ? "#000000" : "#FFFFFF"} />
+) : (
+  <MaterialIcons name={tab.icon as any} size={30} color={activeTab === tab.name ? "#000000" : "#FFFFFF"} />
+)}
           </TouchableOpacity>
         ))}
       </View>
@@ -72,14 +73,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#121212',
     borderRadius: 40,
     paddingVertical: 15,
-    paddingHorizontal: 15,
-    justifyContent: 'space-around',
+    paddingHorizontal: 14,
+    justifyContent: 'space-between',
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.15,
     shadowRadius: 8,
-    elevation: 5,
+    elevation: 15,
   },
   tabButton: {
     width: 40,

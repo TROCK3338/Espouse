@@ -25,17 +25,36 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.yourcompany.ivftrackerapp"
+      "bundleIdentifier": "com.yourcompany.ivftrackerapp",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Allow $(PRODUCT_NAME) to access your camera"
+      },
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.yourcompany.ivftrackerapp"
+      "package": "com.yourcompany.ivftrackerapp",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.CAMERA"
+      ],
+      "runtimeVersion": "1.0.0"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5f95f39d-a945-45c2-aa18-26c8101dd3a4"
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/5f95f39d-a945-45c2-aa18-26c8101dd3a4"
     }
   }
 }

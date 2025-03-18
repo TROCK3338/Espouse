@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, TextInput, Alert } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { Modal } from 'react-native';
+
 
 export type StackParamList = {
   Home: undefined;
@@ -15,13 +14,6 @@ export type StackParamList = {
 };
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<StackParamList, 'Home'>;
-
-const blogs = [
-  { id: '1', title: 'Blog 1', subtitle: 'Subtitle 1', image: require('../assets/blog1.png') },
-  { id: '2', title: 'Blog 2', subtitle: 'Subtitle 2', image: require('../assets/blog2.png') },
-  { id: '3', title: 'Blog 3', subtitle: 'Subtitle 3', image: require('../assets/blog3.png') },
-  { id: '4', title: 'Blog 4', subtitle: 'Subtitle 4', image: require('../assets/blog4.png') },
-];
 
 const weekDays = [
   { day: 'Sun', date: '22', isSelected: false },
@@ -62,7 +54,7 @@ const HomeScreen = () => {
             <Image source={profilePicUri ? { uri: profilePicUri } : require('../assets/girl.jpg')} style={styles.profilePic} />
             <View style={styles.headerTextContainer}>
               <Text style={styles.greeting}>Hello, Sandra</Text>
-              <Text style={styles.date}>Today 25 Nov.</Text>
+              <Text style={styles.date}>Today 25 Nov</Text>
             </View>
           </View>
           <TouchableOpacity onPress={() => setSearchActive(true)}>
@@ -112,56 +104,39 @@ const HomeScreen = () => {
           ))}
         </View>
 
-        {/* Your Blogs Section */}
-        <Text style={styles.sectionTitle}>Latest Blogs</Text>
-        <View style={styles.blogGrid}>
-  {/* First Row (Already Done) */}
+       {/* Your Blogs Section */}
+       <Text style={styles.sectionTitle}>Latest Blogs</Text>
+       <View style={styles.blogGrid}>
   <View style={styles.largeBlog}>
-    <Image 
-      source={require('../assets/blog1.png')}  
-      style={styles.largeBlogImage} 
-    />
+    <Image source={require('../assets/blog1.png')} style={styles.largeBlogImage} />
   </View>
-
   <View style={styles.smallBlogsContainer}>
     <View style={[styles.smallBlog, styles.firstSmallBlog]}>
-      <Image 
-        source={require('../assets/blog2.png')}  
-        style={styles.smallBlogImage} 
-      />
+      <Image source={require('../assets/blog5.png')} style={styles.smallBlogImage} />
     </View>
     <View style={styles.smallBlog}>
-      <Image 
-        source={require('../assets/blog3.png')}  
-        style={styles.smallBlogImage} 
-      />
+      <Image source={require('../assets/blog6.png')} style={styles.smallBlogImage} />
     </View>
   </View>
 </View>
 
-{/* Second Row - Full Width Blog */}
+{/* Full-width Blog (Blog 4)
 <View style={styles.fullWidthBlog}>
-  <Image 
-    source={require('../assets/blog4.png')}  
-    style={styles.fullWidthImage} 
-  />
-</View>
+  <Image source={require('../assets/blog4.png')} style={styles.fullWidthImage} />
+</View> */}
 
-{/* Third Row - Two Equal Half-Width Blogs */}
-<View style={styles.halfWidthBlogs}>
+{/* Half-width Blogs (Blogs 5 & 6) */}
+{/* <View style={styles.halfWidthBlogs}>
   <View style={styles.halfBlog}>
-    <Image 
-      source={require('../assets/blog5.png')}  
-      style={styles.halfBlogImage} 
-    />
+    <Image source={require('../assets/blog5.png')} style={styles.halfBlogImage} />
   </View>
   <View style={styles.halfBlog}>
-    <Image 
-      source={require('../assets/blog6.png')}  
-      style={styles.halfBlogImage} 
-    />
-  </View>
-</View>
+    <Image source={require('../assets/blog6.png')} style={styles.halfBlogImage} />
+  </View> */}
+{/* </View> */}
+
+{/* Spacer to Avoid Merging with Bottom Navigation */}
+<View style={{ height: 80 }} />
 </View>
 
         {/* Search Modal */}
@@ -182,12 +157,17 @@ const HomeScreen = () => {
             </View>
           </View>
         )}
-{/* </View> */}
 </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  extraBlogsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+    paddingHorizontal: 10,
+  },
   fullWidthBlog: {
     width: '100%',
     backgroundColor: 'rgb(242, 214, 237)',
@@ -199,36 +179,26 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 13,
   },
-  
   fullWidthImage: {
     width: '100%',
     height: 260,
     borderRadius: 12,
     resizeMode: 'cover',
   },
-  
   halfWidthBlogs: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 10,
   },
-  
   halfBlog: {
-    flex: 1,
-    backgroundColor: 'rgb(242, 214, 237)',
-    borderRadius: 16,
-    marginHorizontal: 5, // Space between the two blogs
-    shadowColor: '#000',
-    shadowOpacity: 0.08,
-    shadowOffset: { width: 2, height: 4 },
-    shadowRadius: 6,
-    elevation: 13,
+    width: '48%',
+    aspectRatio: 1.5,
+    borderRadius: 10,
+    overflow: 'hidden',
   },
-  
   halfBlogImage: {
     width: '100%',
-    height: 200,
-    borderRadius: 12,
+    height: '100%',
     resizeMode: 'cover',
   },
   blogGrid: {
@@ -236,6 +206,7 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingHorizontal: 1,
     marginTop: 2,
+    paddingBottom: 120, //removes merging with bottom navigation
   },
   
   largeBlog: {
@@ -247,7 +218,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 4 },
     shadowRadius: 6,
     elevation: 13,
-    height: 260,
+    height: 270,
   },
   
   largeBlogImage: {
@@ -310,10 +281,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: '#333',
+    paddingLeft: 50,
   },
   date: {
     fontSize: 14,
     color: '#888',
+    paddingLeft: 70,
   },
   challengeCard: {
     backgroundColor: 'rgba(129, 98, 255, 0.58)',
