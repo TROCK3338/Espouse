@@ -84,8 +84,8 @@ const WelcomeScreen = ({ navigation }: NativeStackScreenProps<RootStackParamList
 
   return (
     <TouchableOpacity style={styles.welcomeContainer} onPress={() => navigation.replace('Login')}>
-      <Image source={require('./assets/tempLogo.png')} style={styles.logo} />
-      <Text style={styles.appName}>Espouse</Text>
+      <Image source={require('./assets/branding.png')} style={styles.logo} />
+      {/* <Text style={styles.appName}>Espouse</Text> */}
       <Text style={styles.tagline}>Bridging Hope with Science: Your IVF Journey, Simplified.</Text>
     </TouchableOpacity>
   );
@@ -98,18 +98,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#F9F9F9',
+    backgroundColor: '#ffffff',
   },
   logo: {
-    width: 150,
-    height: 150,
-    marginBottom: 30,
-  },
-  appName: {
-    fontSize: 32,
-    fontWeight: '600',
-    color: '#4A4A4A',
-    marginBottom: 10,
+    width: 400,
+    height: 400,
+    // borderWidth: 1,
+    // borderColor: '#fff',
+    // marginLeft: 50,
   },
   tagline: {
     fontSize: 16,
