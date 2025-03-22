@@ -4,6 +4,7 @@ import { getAuth, PhoneAuthProvider, signInWithCredential, GoogleAuthProvider } 
 import { initializeApp } from 'firebase/app';
 import { FirebaseRecaptchaVerifierModal } from 'expo-firebase-recaptcha';
 import * as Google from 'expo-auth-session/providers/google';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // ✅ Firebase Config
 const firebaseConfig = {
@@ -12,7 +13,9 @@ const firebaseConfig = {
   projectId: "espouse-b7ef8",
   storageBucket: "espouse-b7ef8.appspot.com",
   messagingSenderId: "1002497853400",
-  appId: "1:1002497853400:web:98bd13211b9d782fe5d4ad"
+  appId: "1:1002497853400:web:98bd13211b9d782fe5d4ad",
+  databaseURL: "https://espouse-b7ef8.firebaseio.com" // ✅ Keep this
+
 };
 
 // ✅ Initialize Firebase
@@ -36,9 +39,22 @@ const LoginScreen = ({ navigation }: any) => {
       const { authentication } = response;
       const credential = GoogleAuthProvider.credential(null, authentication?.accessToken);
       signInWithCredential(auth, credential)
-        .then(() => {
-          Alert.alert('Success', 'Logged in with Google!');
-          navigation.navigate('MainTabs');
+        .then(async (userCredential) => {
+          const user = userCredential.user;
+          
+          // Set login state
+          await AsyncStorage.setItem('isLoggedIn', 'true');
+  
+          // ✅ Check if user has already completed profile setup
+          const name = await AsyncStorage.getItem('userName');
+          const country = await AsyncStorage.getItem('userCountry');
+          const role = await AsyncStorage.getItem('userRole');
+  
+          if (name && country && role) {
+            navigation.replace('MainTabs'); // ✅ Go to MainTabs if profile is complete
+          } else {
+            navigation.replace('ProfileSetup'); // ✅ Otherwise, go to ProfileSetup
+          }
         })
         .catch((error) => Alert.alert('Error', error.message));
     }
@@ -59,13 +75,27 @@ const LoginScreen = ({ navigation }: any) => {
     }
   };
 
-  // ✅ Verify OTP
+  // ✅ Verify OTP - Updated to check profile completion
   const verifyOtp = async () => {
     try {
       const credential = PhoneAuthProvider.credential(verificationId, otp);
       await signInWithCredential(auth, credential);
+      
+      // Set login state
+      await AsyncStorage.setItem('isLoggedIn', 'true');
+      
+      // Check if profile is complete
+      const name = await AsyncStorage.getItem('userName');
+      const country = await AsyncStorage.getItem('userCountry');
+      const role = await AsyncStorage.getItem('userRole');
+      
       Alert.alert('Success', 'Phone verified!');
-      navigation.navigate('MainTabs');
+      
+      if (name && country && role) {
+        navigation.replace('MainTabs'); // Go to MainTabs if profile is complete
+      } else {
+        navigation.replace('ProfileSetup'); // Otherwise, go to ProfileSetup
+      }
     } catch (error) {
       Alert.alert('Error', (error as Error).message);
     }

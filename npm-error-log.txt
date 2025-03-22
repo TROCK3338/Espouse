@@ -1,0 +1,26 @@
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: react-native-speech-to-text-ios@1.0.4
+npm warn Found: react-native@0.76.7
+npm warn node_modules/react-native
+npm warn   react-native@"0.76.7" from the root project
+npm warn   46 more (@expo/metro-runtime, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react-native@"^0.40.0" from react-native-speech-to-text-ios@1.0.4
+npm warn node_modules/react-native-speech-to-text-ios
+npm warn   react-native-speech-to-text-ios@"^1.0.4" from react-native-dialogflow@3.0.3
+npm warn   node_modules/react-native-dialogflow
+npm warn
+npm warn Conflicting peer dependency: react-native@0.40.0
+npm warn node_modules/react-native
+npm warn   peer react-native@"^0.40.0" from react-native-speech-to-text-ios@1.0.4
+npm warn   node_modules/react-native-speech-to-text-ios
+npm warn     react-native-speech-to-text-ios@"^1.0.4" from react-native-dialogflow@3.0.3
+npm warn     node_modules/react-native-dialogflow
+
+added 1 package, and audited 1201 packages in 2s
+
+89 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities

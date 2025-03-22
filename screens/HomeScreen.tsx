@@ -281,12 +281,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: '#333',
-    paddingLeft: 50,
+    paddingLeft: 40,
   },
   date: {
     fontSize: 14,
     color: '#888',
-    paddingLeft: 70,
+    paddingLeft: 59,
   },
   challengeCard: {
     backgroundColor: 'rgba(129, 98, 255, 0.58)',

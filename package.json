@@ -10,6 +10,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/config-plugins": "^9.0.17",
     "@expo/metro-runtime": "~4.0.1",
     "@expo/vector-icons": "^14.0.4",
     "@react-native-async-storage/async-storage": "1.23.1",
@@ -27,6 +28,8 @@
     "expo": "~52.0.37",
     "expo-auth-session": "^6.0.3",
     "expo-blur": "^14.0.3",
+    "expo-constants": "~17.0.8",
+    "expo-firebase-core": "^6.0.0",
     "expo-firebase-recaptcha": "^2.3.1",
     "expo-haptics": "^14.0.1",
     "expo-image-picker": "~16.0.6",
@@ -36,10 +39,11 @@
     "expo-updates": "~0.27.4",
     "firebase": "^11.3.1",
     "google-auth-library": "^9.15.1",
+    "jsrsasign": "^11.1.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-native": "0.76.7",
-    "react-native-dialogflow": "^3.2.2",
+    "react-native-dialogflow": "^3.0.3",
     "react-native-document-scanner-plugin": "^1.0.1",
     "react-native-dotenv": "^3.4.11",
     "react-native-fast-image": "^8.6.3",
@@ -49,6 +53,7 @@
     "react-native-haptic-feedback": "^2.3.3",
     "react-native-image-picker": "^8.1.0",
     "react-native-linear-gradient": "^2.8.3",
+    "react-native-paper": "^5.13.1",
     "react-native-reanimated": "^3.17.0",
     "react-native-safe-area-context": "^5.2.0",
     "react-native-screens": "^4.9.0",
@@ -56,7 +61,9 @@
     "react-native-vector-icons": "^10.2.0",
     "react-native-vision-camera": "^4.6.4",
     "react-native-web": "~0.19.13",
-    "react-native-webview": "13.12.5"
+    "react-native-webview": "13.12.5",
+    "semver": "^7.7.1",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
