@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#5A4FCF', // Soft purple
+    color: '#e45ba5', // peachish
     marginBottom: 5,
   },
   subtitle: {
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#DDD',
+    borderColor: '#d80165', //Dark Pink
     backgroundColor: '#FFF',
     padding: 12,
     borderRadius: 10,
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   loginButton: {
-    backgroundColor: '#5A4FCF', // Soft purple
+    backgroundColor: '#e45ba5', //peachish
     paddingVertical: 15,
     borderRadius: 30,
     alignItems: 'center',
@@ -208,10 +208,10 @@ const styles = StyleSheet.create({
   googleButton: {
     backgroundColor: '#FFF',
     borderWidth: 1,
-    borderColor: '#5A4FCF',
+    borderColor: '#d80165', //Dark Pink
   },
   googleText: {
-    color: '#5A4FCF',
+    color: '#e45ba5', //peachish
   },
   signupContainer: {
     marginTop: 15,
@@ -219,11 +219,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   signupText: {
-    color: '#666',
+    color: '#e45ba5', //peachish
     fontSize: 14,
   },
   signupLink: {
-    color: '#5A4FCF',
+    color: '#e45ba5', //peachish
     fontWeight: 'bold',
     fontSize: 14,
   },

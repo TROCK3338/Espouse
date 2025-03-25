@@ -15,7 +15,6 @@ import { LogBox } from 'react-native';
 // ✅ Ignore FirebaseRecaptcha warning
 LogBox.ignoreLogs(['FirebaseRecaptcha: Support for defaultProps will be removed']);
 
-// ✅ Define navigation types
 export type RootStackParamList = {
   Branding: undefined;
   Login: undefined;
@@ -30,6 +29,11 @@ const App = () => {
 
   useEffect(() => {
     const checkProfileSetup = async () => {
+      if (__DEV__) {
+        // ✅ Auto-clear AsyncStorage in development for testing
+        await AsyncStorage.clear();
+      }
+
       const name = await AsyncStorage.getItem('userName');
       const country = await AsyncStorage.getItem('userCountry');
       const role = await AsyncStorage.getItem('userRole');
@@ -48,7 +52,10 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Branding" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator 
+        initialRouteName="Branding" 
+        screenOptions={{ headerShown: false }}
+      >
         <Stack.Screen name="Branding" component={BrandingScreen} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="ProfileSetup" component={ProfileSetupScreen} />
@@ -58,8 +65,8 @@ const App = () => {
   );
 };
 
-// ✅ Branding Screen (Previously WelcomeScreen)
-const BrandingScreen = ({ navigation }: any) => {
+// ✅ Branding Screen 
+const BrandingScreen = ({ navigation }: { navigation: any }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.replace('Login');
@@ -68,10 +75,10 @@ const BrandingScreen = ({ navigation }: any) => {
   }, []);
 
   return (
-    <TouchableOpacity style={styles.brandingContainer} onPress={() => navigation.replace('Login')}>
+    <View style={styles.brandingContainer}>
       <Image source={require('./assets/branding.png')} style={styles.logo} />
       <Text style={styles.tagline}>Bridging Hope with Science: Your IVF Journey, Simplified.</Text>
-    </TouchableOpacity>
+    </View>
   );
 };
 
@@ -122,6 +129,16 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 40,
     width: '80%',
+  },
+  resetButton: {
+    marginTop: 20,
+    padding: 10,
+    backgroundColor: '#FF5252',
+    borderRadius: 5,
+  },
+  resetText: {
+    color: '#ffffff',
+    fontSize: 16,
   },
 });
 

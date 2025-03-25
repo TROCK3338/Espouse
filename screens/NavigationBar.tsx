@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import Fontisto from '@expo/vector-icons/Fontisto';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import * as Haptics from 'expo-haptics';
+import { View, TouchableOpacity, StyleSheet, Dimensions, Image } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
@@ -13,49 +7,56 @@ interface NavigationBarProps {
   onTabPress: (tab: string) => void;
 }
 
+interface TabItem {
+  name: string;
+  icon: string;
+}
+
 const NavigationBar: React.FC<NavigationBarProps> = ({ onTabPress }) => {
   const [activeTab, setActiveTab] = useState<string>('HOME');
 
-  // Using chat and stethoscope icons but keeping the original structure
-  const tabs = [
-    { name: 'HOME', iconType: 'MaterialCommunityIcons', icon: 'home-analytics', activeIcon: 'home-analytics' },
-    { name: 'CHAT', iconType: 'Fontisto', icon: 'hipchat', activeIcon: 'hipchat' },
-    { name: 'TREAT', iconType: 'FontAwesome5', icon: 'stethoscope', activeIcon: 'stethoscope' },
-    { name: 'PROFILE', iconType: 'Ionicons', icon: 'person-outline', activeIcon: 'person' }
+  const tabs: TabItem[] = [
+    { name: 'HOME', icon: 'https://cdn-icons-png.flaticon.com/128/9643/9643115.png' },
+    { name: 'CHAT', icon: 'https://cdn-icons-png.flaticon.com/128/2652/2652175.png' },
+    { name: 'TREAT', icon: 'https://cdn-icons-png.flaticon.com/128/13606/13606217.png' },
+    { name: 'PROFILE', icon: 'https://cdn-icons-png.flaticon.com/128/8162/8162975.png' }
   ];
 
   const handlePress = (tabName: string) => {
     setActiveTab(tabName);
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     onTabPress(tabName);
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.navBar}>
-        {tabs.map((tab) => (
-          <TouchableOpacity
-            key={tab.name}
-            style={[
-              styles.tabButton,
-              activeTab === tab.name && styles.activeTabButton
-            ]}
-            onPress={() => handlePress(tab.name)}
-            activeOpacity={0.7}
-          >
-{tab.iconType === 'FontAwesome5' ? (
-  <FontAwesome5 name={tab.icon} size={28} color={activeTab === tab.name ? "#000000" : "#FFFFFF"} />
-) : tab.iconType === 'MaterialCommunityIcons' ? (
-  <MaterialCommunityIcons name={tab.icon as any} size={40} color={activeTab === tab.name ? "#000000" : "#FFFFFF"} />
-) : tab.iconType === 'Ionicons' ? (
-  <Ionicons name={tab.icon as any} size={32} color={activeTab === tab.name ? "#000000" : "#FFFFFF"} />
-) : tab.iconType === 'Fontisto' ? (
-  <Fontisto name={tab.icon as any} size={30} color={activeTab === tab.name ? "#000000" : "#FFFFFF"} />
-) : (
-  <MaterialIcons name={tab.icon as any} size={30} color={activeTab === tab.name ? "#000000" : "#FFFFFF"} />
-)}
-          </TouchableOpacity>
-        ))}
+        {tabs.map((tab) => {
+          const isActive = activeTab === tab.name;
+
+          return (
+            <View key={tab.name} style={styles.tabContainer}>
+              {isActive ? (
+                <View style={styles.activeTabBackground}>
+                  <TouchableOpacity
+                    style={styles.tabButtonActive}
+                    onPress={() => handlePress(tab.name)}
+                    activeOpacity={0.7}
+                  >
+                    <Image source={{ uri: tab.icon }} style={styles.iconActive} />
+                  </TouchableOpacity>
+                </View>
+              ) : (
+                <TouchableOpacity
+                  style={styles.tabButton}
+                  onPress={() => handlePress(tab.name)}
+                  activeOpacity={0.7}
+                >
+                  <Image source={{ uri: tab.icon }} style={styles.icon} />
+                </TouchableOpacity>
+              )}
+            </View>
+          );
+        })}
       </View>
     </View>
   );
@@ -72,26 +73,51 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#121212',
     borderRadius: 40,
-    paddingVertical: 15,
-    paddingHorizontal: 14,
-    justifyContent: 'space-between',
+    height: 70,
+    justifyContent: 'space-around',
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
+    shadowOpacity: 0.2,
     shadowRadius: 8,
-    elevation: 15,
+    elevation: 10,
+  },
+  tabContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 70,
+  },
+  activeTabBackground: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: '#FFFFFF',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   tabButton: {
-    width: 40,
-    height: 40,
+    width: 60,
+    height: 60,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 50,
   },
-  activeTabButton: {
-    backgroundColor: 'rgb(255, 255, 255)',
+  tabButtonActive: {
+    width: 60,
+    height: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
+  icon: {
+    width: 24,
+    height: 24,
+    tintColor: '#FFFFFF',
+  },
+  iconActive: {
+    width: 26,
+    height: 26,
+    tintColor: '#000000',
+  }
 });
 
 export default NavigationBar;
