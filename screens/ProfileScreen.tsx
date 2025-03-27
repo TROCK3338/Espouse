@@ -89,7 +89,12 @@ const ProfileScreen = () => {
     },
     border: {
       borderBottomColor: isDark ? '#333333' : '#F0F0F0',
-    }
+    }, 
+    headerTitle: {
+      fontSize: 22,
+      fontWeight: '600',
+      color: isDark ? '#FFFFFF' : '#000000',
+    },
   });
 
   const dynamicStyles = getStyles(isDarkMode);
@@ -101,69 +106,72 @@ const ProfileScreen = () => {
         backgroundColor={isDarkMode ? "#121212" : "#fff"} 
       />
       
-      {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton}>
-          <Ionicons 
-            name="chevron-back" 
-            size={24} 
-            color={isDarkMode ? "#FFF" : "#000"} 
-          />
-        </TouchableOpacity>
-        <Text style={[styles.headerTitle, dynamicStyles.text]}>Profile</Text>
-        <TouchableOpacity 
-          style={styles.settingsButton}
-          onPress={() => {/* Navigate to settings */}}
-        >
-          <Ionicons 
-            name="settings-outline" 
-            size={24} 
-            color={isDarkMode ? "#FFF" : "#000"} 
-          />
-        </TouchableOpacity>
-      </View>
+{/* Header */}
+<View style={[styles.header, { 
+  backgroundColor: isDarkMode ? "#121212" : "#FFF" 
+}]}>
+  <TouchableOpacity style={styles.backButton}>
+    <Ionicons 
+      name="chevron-back" 
+      size={24} 
+      color={isDarkMode ? "#FFF" : "#000"} 
+    />
+  </TouchableOpacity>
+  <Text style={[
+    styles.headerTitle, styles.headerTitle, 
+    { color: isDarkMode ? "#FFFFFF" : "#000000" }
+  ]}>Profile</Text>
+  <TouchableOpacity 
+    style={styles.settingsButton}
+    onPress={() => {/* Navigate to settings */}}
+  >
+    <Ionicons 
+      name="settings-outline" 
+      size={24} 
+      color={isDarkMode ? "#FFF" : "#000"} 
+    />
+  </TouchableOpacity>
+</View>
 
       <ScrollView 
         showsVerticalScrollIndicator={false}
         style={{ backgroundColor: dynamicStyles.container.backgroundColor }}
       >
-        {/* Profile Basic Info */}
-        <View style={styles.profileBasic}>
-          <Image
-            source={{ uri: 'https://randomuser.me/api/portraits/women/44.jpg' }}
-            style={styles.profileImage}
+{/* Profile Basic Info */}
+<View style={styles.profileBasic}>
+  <Image
+    source={{ uri: 'https://randomuser.me/api/portraits/women/44.jpg' }}
+    style={styles.profileImage}
+  />
+  <View style={styles.profileInfo}>
+    <View style={styles.profileNameContainer}>
+      <Text style={[styles.profileName, dynamicStyles.text]}>{userName}</Text>
+      <View style={styles.profileActions}>
+        <TouchableOpacity 
+          style={styles.actionButton} 
+          onPress={shareProfile}
+        >
+          <Ionicons 
+            name="share-outline" 
+            size={18} 
+            color={isDarkMode ? "#FFF" : "#000"} 
           />
-          <View style={styles.profileInfo}>
-            <Text style={[styles.profileName, dynamicStyles.text]}>{userName}</Text>
-            <Text style={[styles.profileLocation, dynamicStyles.subtextColor]}>{userCountry}</Text>
-          </View>
-        </View>
-
-        {/* Follow Stats (Replaced with Share and Edit) */}
-        <View style={[styles.followStats, dynamicStyles.border]}>
-          <TouchableOpacity 
-            style={styles.iconButton} 
-            onPress={shareProfile}
-          >
-            <Ionicons 
-              name="share-outline" 
-              size={22} 
-              color={isDarkMode ? "#FFF" : "#000"} 
-            />
-            <Text style={[{marginLeft: 5}, dynamicStyles.text]}>Share</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            style={styles.iconButton} 
-            onPress={navigateToProfileSetup}
-          >
-            <Ionicons 
-              name="pencil-outline" 
-              size={22} 
-              color={isDarkMode ? "#FFF" : "#000"} 
-            />
-            <Text style={[{marginLeft: 5}, dynamicStyles.text]}>Edit</Text>
-          </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
+        <TouchableOpacity 
+          style={styles.actionButton} 
+          onPress={navigateToProfileSetup}
+        >
+          <Ionicons 
+            name="pencil-outline" 
+            size={18} 
+            color={isDarkMode ? "#FFF" : "#000"} 
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
+    <Text style={[styles.profileLocation, dynamicStyles.subtextColor]}>{userCountry}</Text>
+  </View>
+</View>
 
         {/* Dark Mode Toggle */}
         <View style={[styles.toggleContainer, dynamicStyles.border]}>
@@ -275,6 +283,19 @@ const ProfileScreen = () => {
 
 // Styles remain the same as your original implementation
 const styles = StyleSheet.create({
+  profileNameContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  profileActions: {
+    flexDirection: 'row',
+  },
+  actionButton: {
+    marginLeft: 80,
+    padding: 5,
+  },
   container: {
     flex: 1,
     backgroundColor: '#FFF',
