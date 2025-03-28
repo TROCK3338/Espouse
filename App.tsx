@@ -3,13 +3,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import LoginScreen from './screens/LoginScreen';
-import HomeScreen from './screens/HomeScreen';
-import ChatScreen from './screens/ChatScreen';
-import TreatmentScreen from './screens/TreatmentScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import NavigationBar from './screens/NavigationBar';
-import ProfileSetupScreen from './screens/ProfileSetupScreen';
+import LoginScreen from './src/screens/LoginScreen';
+import HomeScreen from './src/screens/HomeScreen';
+import ChatScreen from './src/screens/ChatScreen';
+import TreatmentScreen from './src/screens/TreatmentScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
+import NavigationBar from './src/screens/NavigationBar';
+import ProfileSetupScreen from './src/screens/ProfileSetupScreen';
 import { LogBox } from 'react-native';
 
 // ✅ Ignore FirebaseRecaptcha warning

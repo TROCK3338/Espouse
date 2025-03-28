@@ -51,7 +51,7 @@ const HomeScreen = () => {
         {/* Header Section */}
         <View style={styles.header}>
           <View style={styles.profileSection}>
-            <Image source={profilePicUri ? { uri: profilePicUri } : require('../assets/girl.jpg')} style={styles.profilePic} />
+            <Image source={profilePicUri ? { uri: profilePicUri } : require('../../assets/girl.jpg')} style={styles.profilePic} />
             <View style={styles.headerTextContainer}>
               <Text style={styles.greeting}>Hello, Sandra</Text>
               <Text style={styles.date}>Today 25 Nov</Text>
@@ -69,9 +69,9 @@ const HomeScreen = () => {
             <Text style={styles.challengeDescription}>Your Personal Questionnaire</Text>
             
             <View style={styles.participantsContainer}>
-              <Image source={require('../assets/avatar.jpeg')} style={styles.participantAvatar} />
-              <Image source={require('../assets/avatar2.jpg')} style={[styles.participantAvatar, styles.participantOverlap]} />
-              <Image source={require('../assets/avatar3.jpg')} style={[styles.participantAvatar, styles.participantOverlap2]} />
+              <Image source={require('../../assets/avatar.jpeg')} style={styles.participantAvatar} />
+              <Image source={require('../../assets/avatar2.jpg')} style={[styles.participantAvatar, styles.participantOverlap]} />
+              <Image source={require('../../assets/avatar3.jpg')} style={[styles.participantAvatar, styles.participantOverlap2]} />
               <View style={styles.moreParticipants}>
                 <Text style={styles.moreParticipantsText}>+4</Text>
               </View>
@@ -81,7 +81,7 @@ const HomeScreen = () => {
           {/* This would be your 3D model or image */}
           <View style={styles.challengeImageContainer}>
             <Image 
-              source={require('../assets/DailyChallenge.jpg')} 
+              source={require('../../assets/DailyChallenge.jpg')} 
               style={{
                 height: 100,
                 width: 100,
@@ -108,14 +108,14 @@ const HomeScreen = () => {
        <Text style={styles.sectionTitle}>Latest Blogs</Text>
        <View style={styles.blogGrid}>
   <View style={styles.largeBlog}>
-    <Image source={require('../assets/blog1.png')} style={styles.largeBlogImage} />
+    <Image source={require('../../assets/blog1.png')} style={styles.largeBlogImage} />
   </View>
   <View style={styles.smallBlogsContainer}>
     <View style={[styles.smallBlog, styles.firstSmallBlog]}>
-      <Image source={require('../assets/blog5.png')} style={styles.smallBlogImage} />
+      <Image source={require('../../assets/blog5.png')} style={styles.smallBlogImage} />
     </View>
     <View style={styles.smallBlog}>
-      <Image source={require('../assets/blog6.png')} style={styles.smallBlogImage} />
+      <Image source={require('../../assets/blog6.png')} style={styles.smallBlogImage} />
     </View>
   </View>
 </View>

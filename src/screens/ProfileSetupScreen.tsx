@@ -5,7 +5,7 @@ import { useGLTF } from '@react-three/drei';
 import { StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import { RootStackParamList } from '../App';
+import { RootStackParamList } from '../../App';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Svg, Path, Circle, LinearGradient, Stop, Defs } from 'react-native-svg';
 
@@ -30,7 +30,7 @@ const roleData: RoleData[] = [
     description: 'Looking for information and support on my wellness journey',
     primaryColor: '#11998e',
     secondaryColor: '#38ef7d',
-    modelPath: require('../assets/wellness-seeker.png'),
+    modelPath: require('../../assets/wellness-seeker.png'),
     tagline: "Your journey to wellness starts here"
   },
   { 
@@ -39,7 +39,7 @@ const roleData: RoleData[] = [
     description: 'I specialize in women\'s reproductive health and wellness',
     primaryColor: '#FF416C',
     secondaryColor: '#FF4B2B',
-    modelPath: require('../assets/gynaecologist.png'),
+    modelPath: require('../../assets/gynaecologist.png'),
     tagline: "Supporting women's health with expertise and compassion"
   },
   { 
@@ -48,7 +48,7 @@ const roleData: RoleData[] = [
     description: 'I work with embryos and advanced reproductive technology',
     primaryColor: '#7F7FD5',
     secondaryColor: '#91EAE4',
-    modelPath: require('../assets/embryologist.png'),
+    modelPath: require('../../assets/embryologist.png'),
     tagline: "Advancing the science of reproductive technology"
   },
 ];
