@@ -1,4 +1,3 @@
-![🌟 Espouse - Your Smart Health Companion🚀](assets/readme/H1.png)
 
 Overview
 Espouse is a cutting-edge period tracking and wellness app designed to empower users with insights into their reproductive health. With AI-powered embryo grading, seamless logging, and expert connectivity, Espouse provides a holistic approach to health management.
