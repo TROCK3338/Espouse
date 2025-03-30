@@ -31,7 +31,6 @@
     "expo-auth-session": "^6.0.3",
     "expo-blur": "^14.0.3",
     "expo-constants": "~17.0.8",
-    "expo-dev-client": "~5.0.15",
     "expo-firebase-core": "^6.0.0",
     "expo-firebase-recaptcha": "^2.3.1",
     "expo-gl": "~15.0.4",

@@ -45,11 +45,6 @@ const ProfileScreen = () => {
     }
   };
 
-  // Navigation to edit profile
-  const navigateToProfileSetup = () => {
-    navigation.navigate('ProfileSetupScreen');
-  };
-
   // Handle list item navigation
   const handleListItemPress = (title: string) => {
     switch(title) {
@@ -157,16 +152,11 @@ const ProfileScreen = () => {
             color={isDarkMode ? "#FFF" : "#000"} 
           />
         </TouchableOpacity>
-        <TouchableOpacity 
-          style={styles.actionButton} 
-          onPress={navigateToProfileSetup}
-        >
           <Ionicons 
             name="pencil-outline" 
             size={18} 
             color={isDarkMode ? "#FFF" : "#000"} 
           />
-        </TouchableOpacity>
       </View>
     </View>
     <Text style={[styles.profileLocation, dynamicStyles.subtextColor]}>{userCountry}</Text>
