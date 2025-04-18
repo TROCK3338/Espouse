@@ -1,4 +1,4 @@
-# 💖 Espouse – A solution to IVF Patients, Doctors, Gyanecologists and Embryologists. 
+# Espouse – A solution to IVF Patients, Gyanecologists and Embryologists. 
 
 **Espouse** is a comprehensive health app designed to empower women through every stage of their reproductive journey. From period tracking to AI-assisted embryo grading and expert consultations, Espouse merges intuitive design with cutting-edge tech for a truly personalized experience.
 
@@ -6,11 +6,11 @@
 
 ## 📖 Table of Contents
 
-- [About](#about)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
+- [About](#About)
+- [Features](#Features)
+- [Tech Stack](#Tech-Stack)
+- [Getting Started](#Getting-Started)
+- [Usage](#Usage)
 - [Screenshots](#screenshots)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
@@ -27,10 +27,10 @@ Espouse is more than just a period tracker — it's your all-in-one reproductive
 
 ## ✨ Features
 
-- 🩸 Track periods, symptoms & reproductive health  
 - 🌐 Role-based experience for patients, gynecologists & embryologists  
 - 🔐 Firebase email/password authentication  
 - ☁️ Sync data with backend (MongoDB)  
+- 🩸 Track periods, symptoms & reproductive health  
 - 📊 Insightful dashboards & health reports  
 - 🤖 AI-based embryo grading (in progress)  
 - 🎯 3D role selector & onboarding flow  
@@ -77,6 +77,12 @@ npx expo start
 ### Usage
 	•	Run the app in Expo Go on your mobile device
 	•	Create an account or log in using email/password
+    OR
+        ENTER TESTING NUMBER WITH OTP (for ease)
+```bash
+        Enter Phone Number : +15555555555
+        Enter OTP : 123456
+```
 	•	Complete the onboarding flow
 	•	Access your dashboard, track cycles, and view reports
 	•	Switch roles and experiences based on your profession
@@ -88,7 +94,8 @@ npx expo start
 <img src="./assets/Screenshots/group1.png" alt="Branding"/>
 
 ### Profile Setup Screens
-<img src="./assets/Screenshots/group1.png" alt="Branding" height="400"/>
+<img src="./assets/Screenshots/workflow.png" alt="Branding"/>
+
 
 ⸻
 
@@ -126,6 +133,7 @@ Distributed under the MIT License. See LICENSE for more information.
 
 Espouse Development Team
 📧 trock3338@gmail.com
+
 🔗 www.linkedin.com/in/aman-singhall
 
 Project Repository: https://github.com/your-username/Espouse
