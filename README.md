@@ -83,23 +83,23 @@ npx expo start
 
 
 ## Screenshots
-		
+
 ### Branding Screen  
-![Branding](./assets/Screenshots/Enter.PNG)
+<img src="./assets/Screenshots/Enter.PNG" alt="Branding" height="200"/>
 
 ### Login Screen  
-![Login](./assets/screenshots/Login01.PNG)
+<img src="./assets/screenshots/Login01.PNG" alt="Login 1" height="200"/>  
 
-![Login](./assets/screenshots/Login02.PNG)
+<img src="./assets/screenshots/Login02.PNG" alt="Login 2" height="200"/>
 
-### Setup Name
-![Name](./assets/Screenshots/SetupName.PNG)
+### Setup Name  
+<img src="./assets/Screenshots/SetupName.PNG" alt="Setup Name" height="200"/>
 
-### Setup Country
-![Name](./assets/Screenshots/SetupCountry.PNG)
+### Setup Country  
+<img src="./assets/Screenshots/SetupCountry.PNG" alt="Setup Country" height="200"/>
 
 ### Role Selector  
-![Role Selector](./assets/Screenshots/SetupRole.PNG)
+<img src="./assets/Screenshots/SetupRole.PNG" alt="Role Selector" height="200"/>
 
 ⸻
 
