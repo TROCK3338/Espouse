@@ -4,13 +4,13 @@
 
 ---
 
-## 📖 Table of Contents
+## Table of Contents
 
-- [About](#About)
-- [Features](#Features)
-- [Tech Stack](#Tech-Stack)
-- [Getting Started](#Getting-Started)
-- [Usage](#Usage)
+- [About](#about)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
 - [Screenshots](#screenshots)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
@@ -19,13 +19,13 @@
 
 ---
 
-## 📃 About
+## About
 
 Espouse is more than just a period tracker — it's your all-in-one reproductive health assistant. Whether you're a wellness seeker, a gynecologist, or an embryologist, Espouse delivers a curated experience tailored to your role. With features like report sharing, AI-based embryo grading, and pro features for free, Espouse bridges the gap between users and specialists.
 
 ---
 
-## ✨ Features
+## Features
 
 - 🌐 Role-based experience for patients, gynecologists & embryologists  
 - 🔐 Firebase email/password authentication  
@@ -39,7 +39,7 @@ Espouse is more than just a period tracker — it's your all-in-one reproductive
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Frontend:** React Native (Expo)  
 - **Backend:** Node.js + Express  
@@ -51,7 +51,7 @@ Espouse is more than just a period tracker — it's your all-in-one reproductive
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -75,17 +75,18 @@ npx expo start
 ```
 
 ### Usage
-	•	Run the app in Expo Go on your mobile device
-	•	Create an account or log in using email/password
-    OR
-        ENTER TESTING NUMBER WITH OTP (for ease)
+
+- Run the app in Expo Go on your mobile device
+- Create an account or log in using email/password
+      **OR**
+      **ENTER TESTING NUMBER WITH OTP (for ease)**
 ```bash
         Enter Phone Number : +15555555555
         Enter OTP : 123456
 ```
-	•	Complete the onboarding flow
-	•	Access your dashboard, track cycles, and view reports
-	•	Switch roles and experiences based on your profession
+- Complete the onboarding flow
+- Access your dashboard, track cycles, and view reports
+- Switch roles and experiences based on your profession
 
 
 ## Screenshots
@@ -100,26 +101,26 @@ npx expo start
 ⸻
 
 ## Roadmap
-	•	Onboarding flow with 3D role selector
-	•	Profile setup with country & name
-	•	Navigation bar with animated icons
-	•	Firebase Auth + AsyncStorage
-	•	MongoDB integration for full data storage
-	•	Report uploads by doctors
-	•	Chat feature with specialists
-	•	AI embryo grading module
-	•	Web version of Espouse
+- Onboarding flow with 3D role selector
+- Profile setup with country & name
+- Navigation bar with animated icons
+- Firebase Auth + AsyncStorage
+- MongoDB integration for full data storage
+- Report uploads by doctors
+- Chat feature with specialists
+- AI embryo grading module
+- Web version of Espouse
 
 ⸻
 
 ## Contributing
 
 We welcome contributions!
-	1.	Fork the repository
-	2.	Create a new branch (git checkout -b feature-name)
-	3.	Make your changes and commit (git commit -m 'Add feature')
-	4.	Push to the branch (git push origin feature-name)
-	5.	Open a Pull Request
+- Fork the repository
+- Create a new branch (git checkout -b feature-name)
+- Make your changes and commit (git commit -m 'Add feature')
+- Push to the branch (git push origin feature-name)
+- Open a Pull Request
 
 ⸻
 
@@ -131,7 +132,6 @@ Distributed under the MIT License. See LICENSE for more information.
 
 ### Contact
 
-Espouse Development Team
 📧 trock3338@gmail.com
 
 🔗 www.linkedin.com/in/aman-singhall
