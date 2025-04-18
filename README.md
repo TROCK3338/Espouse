@@ -84,10 +84,11 @@ npx expo start
 
 ## Screenshots
 
+### Branding & Login Screens
+<img src="./assets/Screenshots/group1.png" alt="Branding"/>
+
+### Profile Setup Screens
 <img src="./assets/Screenshots/group1.png" alt="Branding" height="400"/>
-<img src="./assets/Screenshots/SetupName.PNG" alt="Setup Name" height="400"/>
-<img src="./assets/Screenshots/SetupCountry.PNG" alt="Setup Country" height="400"/>
-<img src="./assets/Screenshots/SetupRole.PNG" alt="Role Selector" height="400"/>
 
 ⸻
 
