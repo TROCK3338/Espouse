@@ -26,7 +26,8 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.yourcompany.ivftrackerapp",
       "infoPlist": {
-        "NSCameraUsageDescription": "Allow $(PRODUCT_NAME) to access your camera"
+        "NSCameraUsageDescription": "Allow $(PRODUCT_NAME) to access your camera",
+        "ITSAppUsesNonExemptEncryption": false
       },
       "runtimeVersion": {
         "policy": "appVersion"
@@ -39,7 +40,6 @@
       },
       "package": "com.yourcompany.ivftrackerapp",
       "permissions": [
-        "android.permission.CAMERA",
         "android.permission.CAMERA"
       ],
       "runtimeVersion": "1.0.0"
@@ -54,6 +54,7 @@
     },
     "updates": {
       "url": "https://u.expo.dev/5f95f39d-a945-45c2-aa18-26c8101dd3a4"
-    }
+    },
+    "privacy": "public"
   }
 }
